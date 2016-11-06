@@ -2,6 +2,7 @@ package com.example.manojk.myfirstapp;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,10 +31,13 @@ public class BackgroundTask {
 
     public ArrayList<BookingDays> getList()
     {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, json_url, null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        //Log.d("myApp", "backgroundTask JSON post" + response);
+
                         int count=0;
                         while (count<response.length())
                         {
