@@ -4,13 +4,22 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AvailableServices extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<BookingDays> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,16 @@ public class AvailableServices extends AppCompatActivity {
 
 
         //myVolleyService.getInstance(this).addToRequestQueue(jsonrequestobject);
+
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        BackgroundTask backgroundTask = new BackgroundTask(AvailableServices.this);
+        arrayList = backgroundTask.getList();
+        adapter = new RecyclerAdapter(arrayList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
