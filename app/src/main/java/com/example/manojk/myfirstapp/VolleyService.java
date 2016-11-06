@@ -84,5 +84,4 @@ public class VolleyService {
         } catch (Exception e) {
         }
     }
-
 }

@@ -35,6 +35,9 @@ public class AvailableServices extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.my_available_services_title);
         getSupportActionBar().setSubtitle(R.string.my_subtitle);
         getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
+
+
+        //myVolleyService.getInstance(this).addToRequestQueue(jsonrequestobject);
     }
 
     @Override
@@ -52,5 +55,4 @@ public class AvailableServices extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
