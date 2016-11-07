@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,7 +39,15 @@ public class orsAvailableServicesTask {
 
     public ArrayList<orsAvailableServices> getList()
     {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, json_url, null,
+
+        final Map<String, String> params = new HashMap<String,String>();
+        params.put("sLeaving","Chandigarh");
+        params.put("sDeparting","Delhi");
+        params.put("busType","Volvo");
+        params.put("dDate","07-Nov-2016");
+
+//        String pp = "sLeaving=Chandigarh&sDeparting=Delhi&dDate=11-jul-2016";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, json_url,new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -46,7 +55,9 @@ public class orsAvailableServicesTask {
 
                         try {
                             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
-                            JSONArray ja = response.getJSONArray("Model");
+                            JSONArray ja = response.getJSONArray("model");
+                            Log.d("myApp", "orsAvailableServices Task JSON post-response  " + ja);
+
                             int count = 0;
                             while (count < ja.length()) {
                                 JSONObject jsonObject = ja.getJSONObject(count);
@@ -102,10 +113,11 @@ public class orsAvailableServicesTask {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String,String> headers = new HashMap<String, String>();
-                headers.put("Content-Type","application/x-www-form-urlencoded");
+                //headers.put("Content-Type","application/x-www-form-urlencoded");
+                headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
-
+/*
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String,String>();
@@ -116,6 +128,32 @@ public class orsAvailableServicesTask {
 
                 return params;
             }
+*/
+/*
+@Override
+public byte[] getBody() {
+
+    JSONObject jsonObject = new JSONObject();
+    String body = null;
+    try {
+        jsonObject.put("sLeaving", "Chandigarh");
+        jsonObject.put("sDeparting", "Delhi");
+
+        body = jsonObject.toString();
+    } catch (JSONException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+
+    try {
+        return body.toString().getBytes("utf-8");
+    } catch (UnsupportedEncodingException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    return null;
+}
+*/
         };
 
         myVolleyService.getInstance(context).addToRequestQueue(jsonObjectRequest);
