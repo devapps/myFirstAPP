@@ -94,10 +94,18 @@ public class orsAvailableServicesTask {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 Toast.makeText(context,"error....", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
         }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> headers = new HashMap<String, String>();
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String,String>();
