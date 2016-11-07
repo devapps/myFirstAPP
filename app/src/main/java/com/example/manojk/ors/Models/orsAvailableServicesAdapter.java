@@ -1,19 +1,20 @@
-package com.example.manojk.myfirstapp;
-
+package com.example.manojk.ors.Models;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.manojk.ors.R;
+
 import java.util.ArrayList;
 
 /**
- * Created by manojK on 06/11/2016.
+ * Created by manojK on 07/11/2016.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    ArrayList<BookingDays> arrayList=new ArrayList<>();
-    public RecyclerAdapter(ArrayList<BookingDays> arrayList)
+public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvailableServicesAdapter.MyViewHolder>{
+    ArrayList<orsAvailableServices> arrayList=new ArrayList<>();
+    public orsAvailableServicesAdapter(ArrayList<orsAvailableServices> arrayList)
     {
         this.arrayList =arrayList;
     }
@@ -25,11 +26,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         return myViewHolder;
     }
-
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.StationID.setText(arrayList.get(position).getStationID());
-        holder.StationName.setText(arrayList.get(position).getStationName());
+        holder.TripID.setText(arrayList.get(position).getTripID());
+        holder.TripRoute.setText(arrayList.get(position).getTripRoute());
     }
 
     @Override
@@ -38,11 +38,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-TextView StationID, StationName;
+        TextView TripID, TripRoute;
         public MyViewHolder(View itemView) {
             super(itemView);
-            StationID = (TextView)itemView.findViewById(R.id.stationID);
-            StationName = (TextView)itemView.findViewById(R.id.stationName);
+            TripID = (TextView)itemView.findViewById(R.id.tripID);
+            TripRoute = (TextView)itemView.findViewById(R.id.tripRoute);
         }
     }
 }

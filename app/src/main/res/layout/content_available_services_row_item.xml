@@ -12,7 +12,7 @@
     android:textStyle="bold"
     android:gravity="center_vertical"
     android:layout_marginLeft="12dp"
-    android:id="@+id/stationID"
+    android:id="@+id/tripID"
     android:textColor="#fa1818"
     />
     <TextView
@@ -22,8 +22,8 @@
         android:textStyle="bold"
         android:gravity="center_vertical"
         android:layout_marginLeft="12dp"
-        android:id="@+id/stationName"
-        android:layout_toRightOf="@+id/stationID"
+        android:id="@+id/tripRoute"
+        android:layout_toRightOf="@+id/tripID"
         android:text="sangwan"
         />
 </RelativeLayout>

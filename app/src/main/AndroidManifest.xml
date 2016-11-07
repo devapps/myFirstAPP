@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.manojk.myfirstapp">
+    package="com.example.manojk.ors">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.manojk.ors.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/HiddenTitleTheme">
             <intent-filter>
@@ -27,14 +27,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.manojk.ors.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BookEticketActivity"
+            android:name="com.example.manojk.ors.BookEticketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AvailableServices"
+            android:name="com.example.manojk.ors.AvailableServices"
             android:label="@string/title_activity_available_services"
             android:theme="@style/AppTheme"></activity>
     </application>

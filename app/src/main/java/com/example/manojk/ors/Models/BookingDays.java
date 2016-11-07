@@ -1,4 +1,4 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors.Models;
 
 /**
  * Created by manojK on 06/11/2016.

@@ -1,4 +1,4 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.manojk.ors.Models.*;
+
 import java.util.ArrayList;
 
 public class AvailableServices extends AppCompatActivity {
@@ -19,7 +21,7 @@ public class AvailableServices extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<BookingDays> arrayList = new ArrayList<>();
+    ArrayList<orsAvailableServices> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,9 @@ public class AvailableServices extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        BackgroundTask backgroundTask = new BackgroundTask(AvailableServices.this);
+        orsAvailableServicesTask backgroundTask = new orsAvailableServicesTask(AvailableServices.this);
         arrayList = backgroundTask.getList();
-        adapter = new RecyclerAdapter(arrayList);
+        adapter = new orsAvailableServicesAdapter(arrayList);
         recyclerView.setAdapter(adapter);
     }
 

@@ -1,8 +1,6 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors.Models;
 
-import android.app.DownloadManager;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;

@@ -6,7 +6,7 @@
     android:background="@drawable/bk"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.manojk.myfirstapp.BookEticketActivity">
+    tools:context="com.example.manojk.ors.BookEticketActivity">
 
     <include
         android:id="@+id/my_toolbar"

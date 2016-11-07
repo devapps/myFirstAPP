@@ -5,7 +5,7 @@
     android:background="@drawable/bk"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.manojk.myfirstapp.LoginActivity">
+    tools:context="com.example.manojk.ors.LoginActivity">
 
     <include
         android:id="@+id/my_toolbar"
