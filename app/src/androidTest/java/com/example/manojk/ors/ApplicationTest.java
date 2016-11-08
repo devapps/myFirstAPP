@@ -1,4 +1,4 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

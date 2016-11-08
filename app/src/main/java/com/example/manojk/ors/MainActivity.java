@@ -1,4 +1,4 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

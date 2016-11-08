@@ -1,16 +1,27 @@
-package com.example.manojk.myfirstapp;
+package com.example.manojk.ors;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.manojk.ors.Models.*;
+
+import java.util.ArrayList;
+
 public class AvailableServices extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<orsAvailableServices> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +46,19 @@ public class AvailableServices extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.my_available_services_title);
         getSupportActionBar().setSubtitle(R.string.my_subtitle);
         getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
+
+
+        //myVolleyService.getInstance(this).addToRequestQueue(jsonrequestobject);
+
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        orsAvailableServicesTask backgroundTask = new orsAvailableServicesTask(AvailableServices.this);
+        arrayList = backgroundTask.getList();
+        adapter = new orsAvailableServicesAdapter(arrayList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -52,5 +76,4 @@ public class AvailableServices extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
