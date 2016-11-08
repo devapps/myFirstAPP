@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,7 @@ public class AvailableServices extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<orsAvailableServices> arrayList = new ArrayList<>();
+    ArrayList<orsAvailableServices> arList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,10 @@ public class AvailableServices extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        orsAvailableServicesTask backgroundTask = new orsAvailableServicesTask(AvailableServices.this);
-        arrayList = backgroundTask.getList();
-        adapter = new orsAvailableServicesAdapter(arrayList);
+        orsAvailableServicesTask orsAS = new orsAvailableServicesTask(AvailableServices.this);
+        arList = orsAS.getList();
+        Log.d("myApp", "arrayList -response  " + arList);
+        adapter = new orsAvailableServicesAdapter(arList);
         recyclerView.setAdapter(adapter);
     }
 

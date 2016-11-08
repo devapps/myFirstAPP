@@ -1,5 +1,4 @@
 package com.example.manojk.ors.Models;
-
 import java.util.Date;
 
 /**
@@ -11,8 +10,8 @@ public class orsAvailableServices {
     Date jTime1;
 
     public orsAvailableServices(int trip_srno, int ID, int onlineSeats, int rKMS, int rFare, int depotID, int reservationCharges, int rTripID, int tripID, int totalSeats, int availableSeats, int closeTime, String busType, String tripCode, String leaving, String departing, String via, String rDesc, String boarding, String plateform, String dropping, String tripRoute, String depotShortName, Date jTime1) {
-        this.trip_srno = trip_srno;
-        this.ID = ID;
+        this.setTrip_srno(trip_srno);
+        this.setID(ID);
         this.onlineSeats = onlineSeats;
         this.rKMS = rKMS;
         this.rFare = rFare;
@@ -34,7 +33,7 @@ public class orsAvailableServices {
         this.dropping = dropping;
         TripRoute = tripRoute;
         this.depotShortName = depotShortName;
-        this.jTime1 = jTime1;
+        this.setjTime1(jTime1);
     }
 
     public int getTrip_srno() {
