@@ -1,5 +1,6 @@
 package com.example.manojk.ors.Models;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
     public orsAvailableServicesAdapter(ArrayList<orsAvailableServices> arrayList)
     {
         this.arrayList =arrayList;
+        Log.d("myApp", "orsAvailableServices Adapter  " + arrayList);
     }
 
     @Override

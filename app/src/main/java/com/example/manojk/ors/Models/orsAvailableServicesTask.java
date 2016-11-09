@@ -1,5 +1,6 @@
 package com.example.manojk.ors.Models;
 
+
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import java.util.Map;
  * Created by manojK on 07/11/2016.
  */
 public class orsAvailableServicesTask {
+    myIResult iResult;
     Context context;
     ArrayList<orsAvailableServices> arList = new ArrayList<>();
     String json_url = "http://hartrans.gov.in/ors/api/orsAvailableServices";
@@ -35,11 +37,11 @@ public class orsAvailableServicesTask {
     public orsAvailableServicesTask(Context context)
     {
         this.context = context;
+        this.iResult = (myIResult) context;
     }
 
-    public ArrayList<orsAvailableServices> getList()
+    public void getList()
     {
-
         final Map<String, String> params = new HashMap<String,String>();
         params.put("sLeaving","Chandigarh");
         params.put("sDeparting","Delhi");
@@ -53,14 +55,21 @@ public class orsAvailableServicesTask {
                     public void onResponse(JSONObject response) {
                         //Log.d("myApp", "orsAvailableServices Task JSON post-response  " + response);
 
+                        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                        JSONArray ja = null;
                         try {
-                            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                            JSONArray ja = response.getJSONArray("model");
-                            //Log.d("myApp", "orsAvailableServices Task JSON post-response  " + ja);
+                            ja = response.getJSONArray("model");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //Log.d("myApp", "orsAvailableServices Task JSON post-response  " + ja);
 
-                            int count = 0;
-                            while (count < ja.length()) {
-                                JSONObject jsonObject = ja.getJSONObject(count);
+                        int count = 0;
+                        while (count < ja.length()) {
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = ja.getJSONObject(count);
+
                                 Date jTime1 = new Date();
 
                                 /*try {
@@ -69,20 +78,21 @@ public class orsAvailableServicesTask {
                                     e.printStackTrace();
                                 }*/
 
-                                orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"),jsonObject.getInt("id"),jsonObject.getInt("onlineSeats"),jsonObject.getInt("rKMS"),jsonObject.getInt("rFare"),jsonObject.getInt("depotID"),jsonObject.getInt("reservationCharges"),jsonObject.getInt("rTripID"),jsonObject.getInt("tripID"),jsonObject.getInt("totalSeats"),jsonObject.getInt("availableSeats"),jsonObject.getInt("closeTime"),jsonObject.getString("busType"),jsonObject.getString("tripCode"),jsonObject.getString("leaving"),jsonObject.getString("departing"),jsonObject.getString("via"),jsonObject.getString("rDesc"),jsonObject.getString("boarding"),jsonObject.getString("plateform"),jsonObject.getString("dropping"),jsonObject.getString("tripRoute"),jsonObject.getString("depotShortName"),jTime1);
+                                orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"), jsonObject.getInt("id"), jsonObject.getInt("onlineSeats"), jsonObject.getInt("rKMS"), jsonObject.getInt("rFare"), jsonObject.getInt("depotID"), jsonObject.getInt("reservationCharges"), jsonObject.getInt("rTripID"), jsonObject.getInt("tripID"), jsonObject.getInt("totalSeats"), jsonObject.getInt("availableSeats"), jsonObject.getInt("closeTime"), jsonObject.getString("busType"), jsonObject.getString("tripCode"), jsonObject.getString("leaving"), jsonObject.getString("departing"), jsonObject.getString("via"), jsonObject.getString("rDesc"), jsonObject.getString("boarding"), jsonObject.getString("plateform"), jsonObject.getString("dropping"), jsonObject.getString("tripRoute"), jsonObject.getString("depotShortName"), jTime1);
                                 arList.add(orsAV);
                                 count++;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            //Log.d("myApp", "ors_availableServices TASK -response  " + arrayList);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                        //Log.d("myApp", "ors_availableServices TASK -response  " + arList);
+                        iResult.notifySuccess(arList);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(context,"error....", Toast.LENGTH_SHORT).show();
+                iResult.notifyError(error);
+                //Toast.makeText(context,"error....", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
         })
@@ -97,7 +107,6 @@ public class orsAvailableServicesTask {
         };
 
         myVolleyService.getInstance(context).addToRequestQueue(jsonObjectRequest);
-        Log.d("myApp", "ors_availableServices TASK -response  " + arList);
-        return arList;
+        //return arList;
     }
 }

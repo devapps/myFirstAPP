@@ -13,11 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.example.manojk.ors.Models.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AvailableServices extends AppCompatActivity {
+public class AvailableServices extends AppCompatActivity implements myIResult {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -57,10 +61,7 @@ public class AvailableServices extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         orsAvailableServicesTask orsAS = new orsAvailableServicesTask(AvailableServices.this);
-        arList = orsAS.getList();
-        Log.d("myApp", "arrayList -response  " + arList);
-        adapter = new orsAvailableServicesAdapter(arList);
-        recyclerView.setAdapter(adapter);
+        orsAS.getList();
     }
 
     @Override
@@ -78,4 +79,16 @@ public class AvailableServices extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void notifySuccess(ArrayList<orsAvailableServices> orsAS){
+        Log.d("myApp", "ors_availableServices TASK -response  " + orsAS);
+        adapter = new orsAvailableServicesAdapter(orsAS);
+        recyclerView.setAdapter(adapter);
+    }
+    @Override
+    public void notifySuccess(JSONObject response){}
+    @Override
+    public void notifySuccess(JSONArray response){}
+    @Override
+    public void notifyError(VolleyError error){}
 }
