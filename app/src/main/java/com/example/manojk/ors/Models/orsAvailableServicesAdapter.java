@@ -14,11 +14,10 @@ import java.util.ArrayList;
  * Created by manojK on 07/11/2016.
  */
 public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvailableServicesAdapter.MyViewHolder>{
-    ArrayList<orsAvailableServices> arrayList=new ArrayList<>();
-    public orsAvailableServicesAdapter(ArrayList<orsAvailableServices> arrayList)
+    ArrayList<orsAVS> arrayList=new ArrayList<>();
+    public orsAvailableServicesAdapter(ArrayList<orsAVS> arrayList)
     {
         this.arrayList =arrayList;
-        Log.d("myApp", "orsAvailableServices Adapter  " + arrayList);
     }
 
     @Override

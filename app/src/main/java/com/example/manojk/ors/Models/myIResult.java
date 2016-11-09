@@ -12,5 +12,5 @@ public interface myIResult {
     public void notifySuccess(JSONObject response);
     public void notifySuccess(JSONArray response);
     public void notifyError(VolleyError error);
-    public void notifySuccess(ArrayList<orsAvailableServices> orsAS);
+    public void notifySuccess(ArrayList<orsAVS> orsAS);
 }

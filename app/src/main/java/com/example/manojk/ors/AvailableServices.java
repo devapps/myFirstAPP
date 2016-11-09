@@ -80,7 +80,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
         return super.onOptionsItemSelected(item);
     }
     @Override
-    public void notifySuccess(ArrayList<orsAvailableServices> orsAS){
+    public void notifySuccess(ArrayList<orsAVS> orsAS){
         Log.d("myApp", "ors_availableServices TASK -response  " + orsAS);
         adapter = new orsAvailableServicesAdapter(orsAS);
         recyclerView.setAdapter(adapter);

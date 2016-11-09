@@ -31,7 +31,7 @@ import java.util.Map;
 public class orsAvailableServicesTask {
     myIResult iResult;
     Context context;
-    ArrayList<orsAvailableServices> arList = new ArrayList<>();
+    ArrayList<orsAVS> arList = new ArrayList<>();
     String json_url = "http://hartrans.gov.in/ors/api/orsAvailableServices";
 
     public orsAvailableServicesTask(Context context)
@@ -78,7 +78,10 @@ public class orsAvailableServicesTask {
                                     e.printStackTrace();
                                 }*/
 
-                                orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"), jsonObject.getInt("id"), jsonObject.getInt("onlineSeats"), jsonObject.getInt("rKMS"), jsonObject.getInt("rFare"), jsonObject.getInt("depotID"), jsonObject.getInt("reservationCharges"), jsonObject.getInt("rTripID"), jsonObject.getInt("tripID"), jsonObject.getInt("totalSeats"), jsonObject.getInt("availableSeats"), jsonObject.getInt("closeTime"), jsonObject.getString("busType"), jsonObject.getString("tripCode"), jsonObject.getString("leaving"), jsonObject.getString("departing"), jsonObject.getString("via"), jsonObject.getString("rDesc"), jsonObject.getString("boarding"), jsonObject.getString("plateform"), jsonObject.getString("dropping"), jsonObject.getString("tripRoute"), jsonObject.getString("depotShortName"), jTime1);
+                                orsAVS orsAV = new orsAVS();
+                                orsAV.setTripID(1234567890);
+                                orsAV.setTripRoute("Delhi to Chandigarh");
+                                //orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"), jsonObject.getInt("id"), jsonObject.getInt("onlineSeats"), jsonObject.getInt("rKMS"), jsonObject.getInt("rFare"), jsonObject.getInt("depotID"), jsonObject.getInt("reservationCharges"), jsonObject.getInt("rTripID"), jsonObject.getInt("tripID"), jsonObject.getInt("totalSeats"), jsonObject.getInt("availableSeats"), jsonObject.getInt("closeTime"), jsonObject.getString("busType"), jsonObject.getString("tripCode"), jsonObject.getString("leaving"), jsonObject.getString("departing"), jsonObject.getString("via"), jsonObject.getString("rDesc"), jsonObject.getString("boarding"), jsonObject.getString("plateform"), jsonObject.getString("dropping"), jsonObject.getString("tripRoute"), jsonObject.getString("depotShortName"), jTime1);
                                 arList.add(orsAV);
                                 count++;
                             } catch (JSONException e) {
@@ -95,7 +98,8 @@ public class orsAvailableServicesTask {
                 //Toast.makeText(context,"error....", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
-        })
+        });
+        /*
         {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -105,7 +109,7 @@ public class orsAvailableServicesTask {
                 return headers;
             }
         };
-
+*/
         myVolleyService.getInstance(context).addToRequestQueue(jsonObjectRequest);
         //return arList;
     }
