@@ -3,10 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="50sp"
-    android:layout_marginLeft="12sp"
-    android:layout_marginRight="12sp"
-    android:layout_marginTop="5sp"
-    android:background="#BBDEFB">
+    android:background="#BBDEFB"
+    >
     <TextView
         android:layout_width="300sp"
         android:layout_height="wrap_content"
@@ -55,5 +53,6 @@
         android:layout_alignParentRight="true"
         android:id="@+id/rFare"
         android:background="#0bf13d"
+        android:layout_margin="5sp"
         />
 </RelativeLayout>

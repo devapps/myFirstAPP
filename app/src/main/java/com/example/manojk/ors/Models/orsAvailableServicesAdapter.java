@@ -1,5 +1,6 @@
 package com.example.manojk.ors.Models;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +34,12 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        holder.TripRoute.setText(arrayList.get(position).getBusType() +": "+arrayList.get(position).getTripRoute());
         SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
         holder.TripID.setText(arrayList.get(position).getTripID()+"");
         holder.Jtime1.setText(output.format(arrayList.get(position).getjTime1()));
-        holder.TripRoute.setText(arrayList.get(position).getTripRoute());
-        holder.rFare.setText("Rs."+arrayList.get(position).getrFare()+".");
+        holder.rFare.setText(Html.fromHtml("Seats: "+arrayList.get(position).getAvailableSeats()+"<br/>Rs."+arrayList.get(position).getrFare()+"."));
+
     }
 
     @Override

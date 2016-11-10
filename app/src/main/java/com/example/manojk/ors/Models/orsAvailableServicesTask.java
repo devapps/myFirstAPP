@@ -63,7 +63,7 @@ public class orsAvailableServicesTask implements Serializable {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //Log.d("myApp", "orsAvailableServices Task JSON post-response  " + ja);
+                        Log.d("myApp", "orsAvailableServices Task JSON post-response  " + ja);
 
                         int count = 0;
                         while (count < ja.length()) {
