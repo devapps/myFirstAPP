@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,10 +29,10 @@ import java.util.Map;
 /**
  * Created by manojK on 07/11/2016.
  */
-public class orsAvailableServicesTask {
+public class orsAvailableServicesTask implements Serializable {
     myIResult iResult;
     Context context;
-    ArrayList<orsAVS> arList = new ArrayList<>();
+    ArrayList<orsAvailableServices> arList = new ArrayList<>();
     String json_url = "http://hartrans.gov.in/ors/api/orsAvailableServices";
 
     public orsAvailableServicesTask(Context context)
@@ -46,7 +47,7 @@ public class orsAvailableServicesTask {
         params.put("sLeaving","Chandigarh");
         params.put("sDeparting","Delhi");
         params.put("busType","Volvo");
-        params.put("dDate","07-Nov-2016");
+        params.put("dDate","10-Nov-2016");
 
 //        String pp = "sLeaving=Chandigarh&sDeparting=Delhi&dDate=11-jul-2016";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, json_url,new JSONObject(params),
@@ -55,7 +56,7 @@ public class orsAvailableServicesTask {
                     public void onResponse(JSONObject response) {
                         //Log.d("myApp", "orsAvailableServices Task JSON post-response  " + response);
 
-                        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
                         JSONArray ja = null;
                         try {
                             ja = response.getJSONArray("model");
@@ -72,16 +73,15 @@ public class orsAvailableServicesTask {
 
                                 Date jTime1 = new Date();
 
-                                /*try {
+                                try {
                                     jTime1 =  formatter.parse(jsonObject.getString("jTime1"));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
-                                }*/
+                                }
 
-                                orsAVS orsAV = new orsAVS();
-                                orsAV.setTripID(1234567890);
-                                orsAV.setTripRoute("Delhi to Chandigarh");
-                                //orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"), jsonObject.getInt("id"), jsonObject.getInt("onlineSeats"), jsonObject.getInt("rKMS"), jsonObject.getInt("rFare"), jsonObject.getInt("depotID"), jsonObject.getInt("reservationCharges"), jsonObject.getInt("rTripID"), jsonObject.getInt("tripID"), jsonObject.getInt("totalSeats"), jsonObject.getInt("availableSeats"), jsonObject.getInt("closeTime"), jsonObject.getString("busType"), jsonObject.getString("tripCode"), jsonObject.getString("leaving"), jsonObject.getString("departing"), jsonObject.getString("via"), jsonObject.getString("rDesc"), jsonObject.getString("boarding"), jsonObject.getString("plateform"), jsonObject.getString("dropping"), jsonObject.getString("tripRoute"), jsonObject.getString("depotShortName"), jTime1);
+
+                                orsAvailableServices orsAV = new orsAvailableServices(jsonObject.getInt("trip_srno"), jsonObject.getInt("id"), jsonObject.getInt("onlineSeats"), jsonObject.getInt("rKMS"), jsonObject.getInt("rFare"), jsonObject.getInt("depotID"), jsonObject.getInt("reservationCharges"), jsonObject.getInt("rTripID"), jsonObject.getInt("tripID"), jsonObject.getInt("totalSeats"), jsonObject.getInt("availableSeats"), jsonObject.getInt("closeTime"), jsonObject.getString("busType"), jsonObject.getString("tripCode"), jsonObject.getString("leaving"), jsonObject.getString("departing"), jsonObject.getString("via"), jsonObject.getString("rDesc"), jsonObject.getString("boarding"), jsonObject.getString("plateform"), jsonObject.getString("dropping"), jsonObject.getString("tripRoute"), jsonObject.getString("depotShortName"), jTime1);
+                                //Log.d("myApp", "class object -response  " + orsAV);
                                 arList.add(orsAV);
                                 count++;
                             } catch (JSONException e) {

@@ -1,8 +1,8 @@
 package com.example.manojk.ors.Models;
+
 import com.android.volley.VolleyError;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /**
@@ -12,5 +12,5 @@ public interface myIResult {
     public void notifySuccess(JSONObject response);
     public void notifySuccess(JSONArray response);
     public void notifyError(VolleyError error);
-    public void notifySuccess(ArrayList<orsAVS> orsAS);
+    public void notifySuccess(ArrayList<orsAvailableServices> orsAS);
 }

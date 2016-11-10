@@ -8,14 +8,18 @@ import android.widget.TextView;
 
 import com.example.manojk.ors.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by manojK on 07/11/2016.
  */
 public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvailableServicesAdapter.MyViewHolder>{
-    ArrayList<orsAVS> arrayList=new ArrayList<>();
-    public orsAvailableServicesAdapter(ArrayList<orsAVS> arrayList)
+    ArrayList<orsAvailableServices> arrayList=new ArrayList<>();
+    public orsAvailableServicesAdapter(ArrayList<orsAvailableServices> arrayList)
     {
         this.arrayList =arrayList;
     }
@@ -29,8 +33,11 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.TripID.setText(arrayList.get(position).getTripID());
+        SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
+        holder.TripID.setText(arrayList.get(position).getTripID()+"");
+        holder.Jtime1.setText(output.format(arrayList.get(position).getjTime1()));
         holder.TripRoute.setText(arrayList.get(position).getTripRoute());
+        holder.rFare.setText(arrayList.get(position).getrFare()+"");
     }
 
     @Override
@@ -39,11 +46,13 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView TripID, TripRoute;
+        TextView TripID, TripRoute, Jtime1, rFare;
         public MyViewHolder(View itemView) {
             super(itemView);
             TripID = (TextView)itemView.findViewById(R.id.tripID);
+            Jtime1 = (TextView)itemView.findViewById(R.id.jTime1);
             TripRoute = (TextView)itemView.findViewById(R.id.tripRoute);
+            rFare = (TextView)itemView.findViewById(R.id.rFare);
         }
     }
 }
