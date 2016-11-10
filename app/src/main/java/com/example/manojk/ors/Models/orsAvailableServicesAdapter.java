@@ -37,7 +37,7 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
         holder.TripID.setText(arrayList.get(position).getTripID()+"");
         holder.Jtime1.setText(output.format(arrayList.get(position).getjTime1()));
         holder.TripRoute.setText(arrayList.get(position).getTripRoute());
-        holder.rFare.setText(arrayList.get(position).getrFare()+"");
+        holder.rFare.setText("Rs."+arrayList.get(position).getrFare()+".");
     }
 
     @Override

@@ -44,7 +44,7 @@
     />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="80sp"
         android:layout_height="match_parent"
         android:text="manojK."
         android:textSize="12dp"
@@ -54,5 +54,6 @@
         android:textColor="#fa1818"
         android:layout_alignParentRight="true"
         android:id="@+id/rFare"
+        android:background="#0bf13d"
         />
 </RelativeLayout>
