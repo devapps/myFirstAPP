@@ -41,13 +41,13 @@ public class orsAvailableServicesTask implements Serializable {
         this.iResult = (myIResult) context;
     }
 
-    public void getList()
+    public void getList(orsAvailableServicesSearch orsAVSS)
     {
         final Map<String, String> params = new HashMap<String,String>();
-        params.put("sLeaving","Chandigarh");
-        params.put("sDeparting","Delhi");
-        params.put("busType","Volvo");
-        params.put("dDate","10-Nov-2016");
+        params.put("sLeaving",orsAVSS.getsLeaving());
+        params.put("sDeparting",orsAVSS.getsDeparting());
+        params.put("busType",orsAVSS.getBusType());
+        params.put("dDate",orsAVSS.getdDate());
 
 //        String pp = "sLeaving=Chandigarh&sDeparting=Delhi&dDate=11-jul-2016";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, json_url,new JSONObject(params),

@@ -1,5 +1,6 @@
 package com.example.manojk.ors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -53,6 +55,11 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
         getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
 
 
+        Intent i = getIntent();
+        orsAvailableServicesSearch orsAVSS = i.getExtras().getParcelable("orsAvailableServicesSearch");
+
+        //Toast.makeText(AvailableServices.this, orsAVSS.getdDate(), Toast.LENGTH_SHORT).show();
+
         //myVolleyService.getInstance(this).addToRequestQueue(jsonrequestobject);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -61,7 +68,24 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
         recyclerView.setHasFixedSize(true);
 
         orsAvailableServicesTask orsAS = new orsAvailableServicesTask(AvailableServices.this);
-        orsAS.getList();
+        orsAS.getList(orsAVSS);
+
+        //recyclerView.addItemDecoration(new);
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(AvailableServices.this, recyclerView,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        Toast.makeText(AvailableServices.this, "onItem Long Click", Toast.LENGTH_SHORT).show();
+                    }
+                }));
+
     }
 
     @Override

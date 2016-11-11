@@ -3,6 +3,7 @@ package com.example.manojk.ors;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,12 +24,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.example.manojk.ors.Models.orsAvailableServicesSearch;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BookEticketActivity extends AppCompatActivity {
 
@@ -46,6 +52,7 @@ public class BookEticketActivity extends AppCompatActivity {
 
     Button bCheckAvailability = null;
 
+    private String sLeaving, sDeparting, busType, dDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +101,12 @@ public class BookEticketActivity extends AppCompatActivity {
         sp_bus_types.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String busType = ((TextView) findViewById(R.id.sp_main_item)).getText().toString();
-                Toast.makeText(getApplicationContext(), busType, Toast.LENGTH_SHORT).show();
+                String BusType = ((TextView) findViewById(R.id.sp_main_item)).getText().toString();
+                //Toast.makeText(getApplicationContext(), busType, Toast.LENGTH_SHORT).show();
+                if (BusType=="Ordinary Bus")
+                {busType="Ordinary";}
+                    else
+                {busType="Volvo";}
             }
 
             @Override
@@ -106,14 +116,51 @@ public class BookEticketActivity extends AppCompatActivity {
         });
         progressBar.setVisibility(View.GONE);
 
-
-
         bCheckAvailability = (Button) findViewById(R.id.bCheckAvailability);
         bCheckAvailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BookEticketActivity.this, AvailableServices.class));
+                String toastString = "Invalid ";
+                String displayIndent = "T";
 
+                if (busType == null) {
+                    toastString = toastString + ", Bus Type";
+                    displayIndent = "F";
+                }
+                if (sLeaving == null) {
+                    toastString = toastString + ", Leaving from station";
+                    displayIndent = "F";
+                }
+                if (sDeparting == null) {
+                    toastString = toastString + ", Departing to station";
+                    displayIndent = "F";
+                }
+                if (dDate == null) {
+                    toastString = toastString +", Departure Date";
+                    displayIndent = "F";
+                }
+
+                //Toast.makeText(getApplicationContext(), busType+ " " + sLeaving + " " + sDeparting + " " + dDate  , Toast.LENGTH_SHORT).show();
+
+
+                if (displayIndent=="T") {
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    Date jTime1 = new Date();
+                    try {
+                        jTime1 =  formatter.parse(dDate);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy");
+
+                    orsAvailableServicesSearch orsASS = new orsAvailableServicesSearch( sLeaving, sDeparting, busType, output.format(jTime1));
+                    //orsAvailableServicesSearch orsASS = new orsAvailableServicesSearch( "Chandigarh", "Delhi", "Volvo", "12-Nov-2016");
+                    Intent intent = new Intent(BookEticketActivity.this, AvailableServices.class);
+                    intent.putExtra("orsAvailableServicesSearch", orsASS);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -145,8 +192,8 @@ public class BookEticketActivity extends AppCompatActivity {
 
             @Override
             public void notifySuccess(String requestType, JSONArray response) {
-                Log.d("myApp", "Volley requester " + requestType);
-                Log.d("myApp", "Volley JSON post" + response);
+                //Log.d("myApp", "Volley requester " + requestType);
+                //Log.d("myApp", "Volley JSON post" + response);
                 //return response;
                 if (requestType.equals("GETCALL_leaving_from")) {
                     updateLeavingFrom(response);
@@ -161,8 +208,8 @@ public class BookEticketActivity extends AppCompatActivity {
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
-                Log.d("myApp", "Volley requester " + requestType);
-                Log.d("myApp", "Volley JSON post" + "That didn't work!");
+                Log.d("myApp", "Volley requester " + error.getStackTrace());
+                //Log.d("myApp", "Volley JSON post" + "That didn't work!");
             }
         };
     }
@@ -209,6 +256,20 @@ public class BookEticketActivity extends AppCompatActivity {
                 //tv.setLines(1);
                 //tv.setShadowLayer(1.3f, 4.0f, 4.0f, Color.parseColor("#fdab52"));
                 return view;
+            }
+        });
+        sp_departure_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+                if (position > 0) {
+                    dDate = selectedItemText;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
@@ -264,7 +325,12 @@ public class BookEticketActivity extends AppCompatActivity {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 // If user change the default selection
                 // First item is disable and it is used for hint
+
+
                 if (position > 0) {
+                    sLeaving = selectedItemText;
+                    sDeparting = null;
+
                     // Notify the selected item text
                     //Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
                     stations_departing_to.clear();
@@ -320,6 +386,22 @@ public class BookEticketActivity extends AppCompatActivity {
                 //tv.setLines(1);
                 //tv.setShadowLayer(1.3f, 4.0f, 4.0f, Color.parseColor("#fdab52"));
                 return view;
+            }
+        });
+
+        sp_departing_to.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // If user change the default selection
+                // First item is disable and it is used for hint
+
+                if(position>0) {
+                    sDeparting = selectedItemText;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
