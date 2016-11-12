@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.manojk.ors.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/HiddenTitleTheme">
             <intent-filter>
@@ -27,15 +27,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.manojk.ors.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.manojk.ors.BookEticketActivity"
+            android:name=".BookEticketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.manojk.ors.AvailableServices"
+            android:name=".AvailableServices"
             android:label="@string/title_activity_available_services"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".layout_for_seats"
+            android:label="@string/title_activity_layout_for_seats"
             android:theme="@style/AppTheme"></activity>
     </application>
 

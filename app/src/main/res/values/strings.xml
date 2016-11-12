@@ -39,4 +39,5 @@
     <string name="url_departure_date">http://hartrans.gov.in/ors/api/bookingDays</string>
     <string name="title_activity_available_services">AvailableServices</string>
     <string name="my_available_services_title">Available Services</string>
+    <string name="title_activity_layout_for_seats">layout_for_seats</string>
 </resources>
