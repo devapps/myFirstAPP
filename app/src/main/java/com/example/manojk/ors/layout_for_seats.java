@@ -27,5 +27,4 @@ public class layout_for_seats extends AppCompatActivity {
             }
         });
     }
-
 }
