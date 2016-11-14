@@ -29,6 +29,7 @@ public class orsAvailableServicesAdapter  extends RecyclerView.Adapter<orsAvaila
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_available_services_row_item,parent,false);
         view.getBackground().setAlpha(160);
+        //view.setAlpha(.5f);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
