@@ -38,8 +38,8 @@
             android:label="@string/title_activity_available_services"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".layout_for_seats"
-            android:label="@string/title_activity_layout_for_seats"
+            android:name=".TripLayout"
+            android:label="@string/title_activity_trip_layout"
             android:theme="@style/AppTheme"></activity>
     </application>
 

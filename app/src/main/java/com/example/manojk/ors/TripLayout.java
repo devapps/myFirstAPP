@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.example.manojk.ors.R;
 
-public class layout_for_seats extends AppCompatActivity {
+public class TripLayout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout_for_seats);
+        setContentView(R.layout.activity_trip_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -27,4 +27,5 @@ public class layout_for_seats extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.manojk.ors.layout_for_seats">
+    tools:context="com.example.manojk.ors.TripLayout">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_layout_for_seats" />
+    <include layout="@layout/content_trip_layout" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
