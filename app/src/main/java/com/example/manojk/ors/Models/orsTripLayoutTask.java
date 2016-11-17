@@ -2,16 +2,13 @@ package com.example.manojk.ors.Models;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +20,7 @@ public class orsTripLayoutTask {
     orsTripLayout_iResult iResult;
     Context context;
     ArrayList<orsTripLayout> arList = new ArrayList<>();
-    String json_url = "http://hartrans.gov.in/ors/api/orsTripLayout";
+    String json_url = "http://192.168.0.2/ors/api/orsTripLayout";
 
     public orsTripLayoutTask(Context context)
     {
@@ -50,6 +47,7 @@ public class orsTripLayoutTask {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                         Log.d("myApp", "orsTripLayout Task JSON post-response  " + ja);
 
                         int count = 0;
@@ -59,13 +57,14 @@ public class orsTripLayoutTask {
                                 jsonObject = ja.getJSONObject(count);
 
                                 orsTripLayout orsTL = new orsTripLayout(jsonObject.getInt("layoutID"), jsonObject.getString("tripID"), jsonObject.getString("busType"),
-                                        jsonObject.getString("layout_remarks"), jsonObject.getString("layout_c1"), jsonObject.getString("layout_c2"), jsonObject.getString("layout_c3"), jsonObject.getString("layout_c4"), jsonObject.getString("layout_c5"), jsonObject.getString("layout_c6"),
-                                        jsonObject.getBoolean("layout_c1_reserved"), jsonObject.getBoolean("layout_c2_reserved"), jsonObject.getBoolean("layout_c3_reserved"), jsonObject.getBoolean("layout_c4_reserved"), jsonObject.getBoolean("layout_c5_reserved"), jsonObject.getBoolean("layout_c6_reserved"),
-                                        jsonObject.getBoolean("layout_c1_online"),jsonObject.getBoolean("layout_c2_online"),jsonObject.getBoolean("layout_c3_online"),jsonObject.getBoolean("layout_c4_online"),jsonObject.getBoolean("layout_c5_online"),jsonObject.getBoolean("layout_c6_online")
+                                        jsonObject.getString("layout_Remarks"), jsonObject.getString("layout_c1"), jsonObject.getString("layout_c2"), jsonObject.getString("layout_c3"), jsonObject.getString("layout_c4"), jsonObject.getString("layout_c5"), jsonObject.getString("layout_c6"),
+                                        jsonObject.getBoolean("layout_c1_Reserved"), jsonObject.getBoolean("layout_c2_Reserved"), jsonObject.getBoolean("layout_c3_Reserved"), jsonObject.getBoolean("layout_c4_Reserved"), jsonObject.getBoolean("layout_c5_Reserved"), jsonObject.getBoolean("layout_c6_Reserved"),
+                                        jsonObject.getBoolean("layout_c1_Online"),jsonObject.getBoolean("layout_c2_Online"),jsonObject.getBoolean("layout_c3_Online"),jsonObject.getBoolean("layout_c4_Online"),jsonObject.getBoolean("layout_c5_Online"),jsonObject.getBoolean("layout_c6_Online")
                                         );
                                 arList.add(orsTL);
                                 count++;
                             } catch (JSONException e) {
+                                count++;
                                 e.printStackTrace();
                             }
                         }
@@ -79,7 +78,8 @@ public class orsTripLayoutTask {
                 error.printStackTrace();
             }
         });
-        /*
+
+/*
         {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

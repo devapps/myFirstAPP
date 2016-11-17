@@ -80,7 +80,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
                         Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
 
                         String TripID = ((TextView) view.findViewById(R.id.tripID)).getText().toString();
-                        String BusType = "Volvo";
+                        String BusType = "Ordinary";
 
                         orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(TripID, BusType);
                         Intent intent = new Intent(AvailableServices.this, TripLayout.class);
