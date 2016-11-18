@@ -76,8 +76,14 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        //TextView tvItemID = (TextView) view.findViewById(R.id.tripID);
 
-                        Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
+                        //if (view.getId()==tvItemID.getId())
+                        {
+                            Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        //Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
 
                         String TripID = ((TextView) view.findViewById(R.id.tripID)).getText().toString();
                         String BusType = "Ordinary";

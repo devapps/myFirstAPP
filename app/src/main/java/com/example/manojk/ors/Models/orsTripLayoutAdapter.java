@@ -170,6 +170,9 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //holder.tv_Layout_c4.setText(arrayList.get(position).getLayout_c4());
         //holder.tv_Layout_c5.setText(arrayList.get(position).getLayout_c5());
         //holder.tv_Layout_c6.setText(arrayList.get(position).getLayout_c6());
+
+        //holder.tv_Layout_c1.setOnTouchListener();
+
     }
 
     @Override
