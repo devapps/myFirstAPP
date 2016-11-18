@@ -20,7 +20,7 @@ public class orsTripLayoutTask {
     orsTripLayout_iResult iResult;
     Context context;
     ArrayList<orsTripLayout> arList = new ArrayList<>();
-    String json_url = "http://192.168.0.2/ors/api/orsTripLayout";
+    String json_url = "http://hartrans.gov.in/ors/api/orsTripLayout";
 
     public orsTripLayoutTask(Context context)
     {
@@ -48,7 +48,7 @@ public class orsTripLayoutTask {
                             e.printStackTrace();
                         }
 
-                        Log.d("myApp", "orsTripLayout Task JSON post-response  " + ja);
+                        //Log.d("myApp", "orsTripLayout Task JSON post-response  " + ja);
 
                         int count = 0;
                         while (count < ja.length()) {
