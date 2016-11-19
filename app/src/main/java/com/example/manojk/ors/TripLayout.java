@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.VolleyError;
@@ -16,9 +17,10 @@ import com.example.manojk.ors.R;
 
 import java.util.ArrayList;
 
-public class TripLayout extends AppCompatActivity implements orsTripLayout_iResult {
+public class TripLayout extends AppCompatActivity implements orsTripLayout_iResult, orsTripLayoutAdapter.ItemClickCallback {
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    //RecyclerView.Adapter adapter;
+    orsTripLayoutAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<orsTripLayout> arList = new ArrayList<>();
 
@@ -61,5 +63,38 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
         //Log.d("myApp", "ors_availableServices TASK -response  " + orsAS);
         adapter = new orsTripLayoutAdapter(orsTL);
         recyclerView.setAdapter(adapter);
+        adapter.setItemClickCallback(this);
+    }
+
+    @Override
+    public void onLayout_c1_Click(View view, int p) {
+        Log.d("myAPP", "Name Click at " +p + "  " + view.getId());
+        view.setBackgroundResource(R.drawable.bs_sel);
+    }
+
+    @Override
+    public void onLayout_c2_Click(View view, int p) {
+        Log.d("myAPP", "Name Click at " +p + "  " + view.getId());
+        view.setBackgroundResource(R.drawable.bs_sel);
+    }
+
+    @Override
+    public void onLayout_c3_Click(View view, int p) {
+
+    }
+
+    @Override
+    public void onLayout_c4_Click(View view, int p) {
+
+    }
+
+    @Override
+    public void onLayout_c5_Click(View view, int p) {
+
+    }
+
+    @Override
+    public void onLayout_c6_Click(View view, int p) {
+
     }
 }

@@ -18,7 +18,20 @@ import java.util.ArrayList;
 public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdapter.MyViewHolder> {
     ArrayList<orsTripLayout> arrayList = new ArrayList<>();
 
-    public orsTripLayoutAdapter(ArrayList<orsTripLayout> arrayList) {
+    private ItemClickCallback itemClickCallback;
+    public interface ItemClickCallback {
+        void onLayout_c1_Click(View view, int p);
+        void onLayout_c2_Click(View view, int p);
+        void onLayout_c3_Click(View view, int p);
+        void onLayout_c4_Click(View view, int p);
+        void onLayout_c5_Click(View view, int p);
+        void onLayout_c6_Click(View view, int p);
+    }
+    public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
+
+        public orsTripLayoutAdapter(ArrayList<orsTripLayout> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -180,7 +193,7 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         return arrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tv_Layout_c1, tv_Layout_c2, tv_Layout_c3, tv_Layout_c4, tv_Layout_c5, tv_Layout_c6;
         //ImageView iv_Layout_c1, iv_Layout_c2, iv_Layout_c4, iv_Layout_c5, iv_Layout_c6;
 
@@ -190,11 +203,44 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
             //iv_Layout_c2 = (ImageView) itemView.findViewById(R.id.iv_layout_c2);
 
             tv_Layout_c1 = (TextView) itemView.findViewById(R.id.tv_layout_c1);
+            tv_Layout_c1.setOnClickListener(this);
             tv_Layout_c2 = (TextView) itemView.findViewById(R.id.layout_c2);
+            tv_Layout_c2.setOnClickListener(this);
             tv_Layout_c3 = (TextView) itemView.findViewById(R.id.layout_c3);
+            tv_Layout_c3.setOnClickListener(this);
             tv_Layout_c4 = (TextView) itemView.findViewById(R.id.layout_c4);
+            tv_Layout_c4.setOnClickListener(this);
             tv_Layout_c5 = (TextView) itemView.findViewById(R.id.layout_c5);
+            tv_Layout_c5.setOnClickListener(this);
             tv_Layout_c6 = (TextView) itemView.findViewById(R.id.layout_c6);
+            tv_Layout_c6.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.tv_layout_c1:
+                    itemClickCallback.onLayout_c1_Click(v, getAdapterPosition());
+                    break;
+                case R.id.layout_c2:
+                    itemClickCallback.onLayout_c2_Click(v, getAdapterPosition());
+                    break;
+                case R.id.layout_c3:
+                    itemClickCallback.onLayout_c3_Click(v, getAdapterPosition());
+                    break;
+                case R.id.layout_c4:
+                    itemClickCallback.onLayout_c4_Click(v, getAdapterPosition());
+                    break;
+                case R.id.layout_c5:
+                    itemClickCallback.onLayout_c5_Click(v, getAdapterPosition());
+                    break;
+                case R.id.layout_c6:
+                    itemClickCallback.onLayout_c6_Click(v, getAdapterPosition());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

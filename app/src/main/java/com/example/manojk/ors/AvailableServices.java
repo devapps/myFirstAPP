@@ -80,7 +80,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
 
                         //if (view.getId()==tvItemID.getId())
                         {
-                            Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AvailableServices.this, view.getId()+ " onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
                         }
 
                         //Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
-                        Toast.makeText(AvailableServices.this, "onItem Long Click", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AvailableServices.this, "onItem Long Click " + view.getId(), Toast.LENGTH_SHORT).show();
                     }
                 }));
 
