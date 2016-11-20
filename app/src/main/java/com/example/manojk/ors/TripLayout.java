@@ -9,7 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -30,8 +33,8 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +53,38 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
         Intent i = getIntent();
         orsTripLayoutSearch orsTLS = i.getExtras().getParcelable("orsTripLayoutSearch");
+
         orsTripLayoutTask orsTLT = new orsTripLayoutTask(TripLayout.this);
         orsTLT.getTripLayout(orsTLS);
-    }
 
+        RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
+        rl_footer.setVisibility(View.INVISIBLE);
+
+
+        // custom toolbar settings
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+        getSupportActionBar().setTitle(R.string.my_trip_layout_title);
+        getSupportActionBar().setSubtitle(R.string.my_subtitle);
+        getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.trip_layout_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+/*
+@Override
+         public boolean onCreateOptionsMenu(Menu menu) {
+
+         getMenuInflater().inflate(R.menu.main, menu);
+         menu.getItem(0).getSubMenu().getItem(3).setVisible(false);
+         menu.getItem(0).getSubMenu().getItem(4).setVisible(true);
+         return super.onCreateOptionsMenu(menu);
+
+         }
+*/
     @Override
     public void notifyError(VolleyError error) {
         //Log.d("myApp", "orsTripLayout Adapter  -response  " + error.printStackTrace());
@@ -89,6 +120,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 seats_selected++;
             }
         }
+        this.display_footer(seats_selected);
     }
 
     @Override
@@ -110,6 +142,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 seats_selected++;
             }
         }
+        this.display_footer(seats_selected);
     }
 
     @Override
@@ -131,6 +164,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 seats_selected++;
             }
         }
+        this.display_footer(seats_selected);
     }
 
     @Override
@@ -152,6 +186,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 seats_selected++;
             }
         }
+        this.display_footer(seats_selected);
     }
 
     @Override
@@ -173,6 +208,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 seats_selected++;
             }
         }
+        this.display_footer(seats_selected);
     }
 
     @Override
@@ -193,6 +229,22 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 arList.get(p).setLayout_c6_Selected(true);
                 seats_selected++;
             }
+        }
+        this.display_footer(seats_selected);
+    }
+
+    private void display_footer(int seats_Selected)
+    {
+        if(seats_selected>0)
+        {
+            RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
+            rl_footer.setVisibility(View.VISIBLE);
+            TextView tv_seats_Selected =(TextView) findViewById(R.id.seats_selected);
+            tv_seats_Selected.setText("Total Seats: " + seats_selected );
+        }else
+        {
+            RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
+            rl_footer.setVisibility(View.INVISIBLE);
         }
     }
 }

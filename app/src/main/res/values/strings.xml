@@ -41,4 +41,9 @@
     <string name="my_available_services_title">Available Services</string>
     <string name="title_activity_layout_for_seats">layout_for_seats</string>
     <string name="title_activity_trip_layout">TripLayout</string>
+    <string name="menu_TL_seats_Available">Seats Available for Booking</string>
+    <string name="menu_TL_seats_Booked">Seats already booked</string>
+    <string name="menu_TL_seats_Blocked">Seats selected/blocked</string>
+    <string name="menu_TL_seats_Counter">Available only for counter booking</string>
+    <string name="my_trip_layout_title">Trip Layout</string>
 </resources>

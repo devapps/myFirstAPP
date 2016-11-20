@@ -4,15 +4,29 @@
     android:layout_height="50sp"
     android:gravity="center"
     android:layout_alignParentBottom="true"
-    android:background="#ffffff">
+    android:layout_gravity="bottom"
+    android:background="#ffffff"
+    android:id="@+id/rl_footer"
+    >
     <TextView
-        android:layout_width="35sp"
-        android:layout_height="35sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_marginLeft="15dp"
         android:gravity="center"
         android:id="@+id/seats_selected"
-        android:text="01"
+        android:text="manojK."
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:gravity="center"
+        android:id="@+id/fareAmount"
+        android:text="Sangwan"
+        android:layout_below="@+id/seats_selected"
         />
 </RelativeLayout>
