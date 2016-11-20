@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="55sp"
+    android:layout_height="50sp"
     android:gravity="center"
     android:background="#BBDEFB">
 
     <TextView
-        android:layout_width="40sp"
-        android:layout_height="45sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:textSize="12sp"
         android:textStyle="bold"
         android:layout_marginLeft="15dp"
@@ -17,8 +17,8 @@
         android:text="01"
         />
     <TextView
-    android:layout_width="40sp"
-    android:layout_height="45sp"
+    android:layout_width="35sp"
+    android:layout_height="35sp"
     android:text="manojK."
     android:textSize="12dp"
     android:textStyle="bold"
@@ -28,8 +28,8 @@
     android:layout_toRightOf="@+id/tv_layout_c1"
         />
     <TextView
-        android:layout_width="40sp"
-        android:layout_height="45sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:text=""
         android:textSize="12dp"
         android:textStyle="bold"
@@ -39,8 +39,8 @@
         android:layout_toRightOf="@+id/layout_c2"
         />
     <TextView
-        android:layout_width="40sp"
-        android:layout_height="45sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:text="manojK."
         android:textSize="12dp"
         android:textStyle="bold"
@@ -50,8 +50,8 @@
         android:layout_toRightOf="@+id/layout_c3"
         />
     <TextView
-        android:layout_width="40sp"
-        android:layout_height="45sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:text="manojK."
         android:textSize="12dp"
         android:textStyle="bold"
@@ -61,8 +61,8 @@
         android:layout_toRightOf="@+id/layout_c4"
         />
     <TextView
-        android:layout_width="40sp"
-        android:layout_height="45sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:text="manojK."
         android:textSize="12dp"
         android:textStyle="bold"

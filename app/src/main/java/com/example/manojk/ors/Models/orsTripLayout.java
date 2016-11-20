@@ -9,8 +9,12 @@ public class orsTripLayout {
     String TripID, BusType, Layout_Remarks, Layout_c1, Layout_c2, Layout_c3, Layout_c4, Layout_c5, Layout_c6;
     boolean Layout_c1_Reserved,Layout_c2_Reserved, Layout_c3_Reserved, Layout_c4_Reserved, Layout_c5_Reserved, Layout_c6_Reserved;
     boolean Layout_c1_Online,Layout_c2_Online, Layout_c3_Online, Layout_c4_Online, Layout_c5_Online, Layout_c6_Online;
+    boolean Layout_c1_Selected,Layout_c2_Selected, Layout_c3_Selected, Layout_c4_Selected, Layout_c5_Selected, Layout_c6_Selected;
 
-    public orsTripLayout(int layoutID, String tripID, String busType, String layout_Remarks, String layout_c1, String layout_c2, String layout_c3, String layout_c4, String layout_c5, String layout_c6, boolean layout_c1_Reserved, boolean layout_c2_Reserved, boolean layout_c3_Reserved, boolean layout_c4_Reserved, boolean layout_c5_Reserved, boolean layout_c6_Reserved, boolean layout_c1_Online, boolean layout_c2_Online, boolean layout_c3_Online, boolean layout_c4_Online, boolean layout_c5_Online, boolean layout_c6_Online) {
+    public orsTripLayout(int layoutID, String tripID, String busType, String layout_Remarks,
+                         String layout_c1, String layout_c2, String layout_c3, String layout_c4, String layout_c5, String layout_c6,
+                         boolean layout_c1_Reserved, boolean layout_c2_Reserved, boolean layout_c3_Reserved, boolean layout_c4_Reserved, boolean layout_c5_Reserved, boolean layout_c6_Reserved,
+                         boolean layout_c1_Online, boolean layout_c2_Online, boolean layout_c3_Online, boolean layout_c4_Online, boolean layout_c5_Online, boolean layout_c6_Online) {
         LayoutID = layoutID;
         TripID = tripID;
         BusType = busType;
@@ -33,6 +37,12 @@ public class orsTripLayout {
         Layout_c4_Online = layout_c4_Online;
         Layout_c5_Online = layout_c5_Online;
         Layout_c6_Online = layout_c6_Online;
+        Layout_c1_Selected = false;
+        Layout_c2_Selected = false;
+        Layout_c3_Selected = false;
+        Layout_c4_Selected = false;
+        Layout_c5_Selected = false;
+        Layout_c6_Selected = false;
     }
 
     public int getLayoutID() {
@@ -210,4 +220,53 @@ public class orsTripLayout {
     public void setLayout_c6_Online(boolean layout_c6_Online) {
         Layout_c6_Online = layout_c6_Online;
     }
+
+    public boolean isLayout_c1_Selected() {
+        return Layout_c1_Selected;
+    }
+
+    public void setLayout_c1_Selected(boolean layout_c1_Selected) {
+        Layout_c1_Selected = layout_c1_Selected;
+    }
+
+    public boolean isLayout_c2_Selected() {
+        return Layout_c2_Selected;
+    }
+
+    public void setLayout_c2_Selected(boolean layout_c2_Selected) {
+        Layout_c2_Selected = layout_c2_Selected;
+    }
+
+    public boolean isLayout_c3_Selected() {
+        return Layout_c3_Selected;
+    }
+
+    public void setLayout_c3_Selected(boolean layout_c3_Selected) {
+        Layout_c3_Selected = layout_c3_Selected;
+    }
+
+    public boolean isLayout_c4_Selected() {
+        return Layout_c4_Selected;
+    }
+
+    public void setLayout_c4_Selected(boolean layout_c4_Selected) {
+        Layout_c4_Selected = layout_c4_Selected;
+    }
+
+    public boolean isLayout_c5_Selected() {
+        return Layout_c5_Selected;
+    }
+
+    public void setLayout_c5_Selected(boolean layout_c5_Selected) {
+        Layout_c5_Selected = layout_c5_Selected;
+    }
+
+    public boolean isLayout_c6_Selected() {
+        return Layout_c6_Selected;
+    }
+
+    public void setLayout_c6_Selected(boolean layout_c6_Selected) {
+        Layout_c6_Selected = layout_c6_Selected;
+    }
+
 }

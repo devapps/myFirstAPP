@@ -46,7 +46,7 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+        //Layout_c1
         if (arrayList.get(position).isLayout_c1_Online()) {
             if (arrayList.get(position).isLayout_c1_Reserved()) {
                 holder.tv_Layout_c1.setBackgroundResource(R.drawable.bs_bkd);
@@ -59,7 +59,7 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
                 holder.tv_Layout_c1.setBackgroundResource(R.drawable.bs_cnt);
             }
         }
-
+        //Layout_c2
         if (arrayList.get(position).isLayout_c2_Online()) {
             if (arrayList.get(position).isLayout_c2_Reserved()) {
                 holder.tv_Layout_c2.setBackgroundResource(R.drawable.bs_bkd);
@@ -72,7 +72,7 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
                 holder.tv_Layout_c2.setBackgroundResource(R.drawable.bs_cnt);
             }
         }
-
+        //Layout_c3
         if (arrayList.get(position).isLayout_c3_Online()) {
             if (arrayList.get(position).isLayout_c3_Reserved()) {
                 holder.tv_Layout_c3.setBackgroundResource(R.drawable.bs_bkd);
@@ -124,14 +124,15 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
                 holder.tv_Layout_c6.setBackgroundResource(R.drawable.bs_cnt);
             }else
             {
-                holder.tv_Layout_c6.setWidth(0);
+                holder.tv_Layout_c6.setVisibility(View.INVISIBLE);
             }
         }
         //arrayList.get(position).getLayout_c1()=="vc" ||arrayList.get(position).getLayout_c1()=="cnd" ||arrayList.get(position).getLayout_c1()=="mm"
        // Log.d("myApp", "getLayout_c1-response  " + arrayList.get(position).getLayout_c1());
         if (arrayList.get(position).getLayout_c1().equals("vc"))
         {
-            holder.tv_Layout_c1.setText("");
+            //holder.tv_Layout_c1.setText("");
+            holder.tv_Layout_c1.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c1.setText(arrayList.get(position).getLayout_c1());
@@ -139,7 +140,8 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //Layout_c2
         if (arrayList.get(position).getLayout_c2().equals("vc"))
         {
-            holder.tv_Layout_c2.setText("");
+            //holder.tv_Layout_c2.setText("");
+            holder.tv_Layout_c2.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c2.setText(arrayList.get(position).getLayout_c2());
@@ -147,7 +149,8 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //layout_c3
         if (arrayList.get(position).getLayout_c3().equals("mm"))
         {
-            holder.tv_Layout_c3.setText("");
+            //holder.tv_Layout_c3.setText("");
+            holder.tv_Layout_c3.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c3.setText(arrayList.get(position).getLayout_c3());
@@ -155,7 +158,8 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //layout_c4
         if (arrayList.get(position).getLayout_c4().equals("vc"))
         {
-            holder.tv_Layout_c4.setText("");
+            //holder.tv_Layout_c4.setText("");
+            holder.tv_Layout_c4.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c4.setText(arrayList.get(position).getLayout_c4());
@@ -163,7 +167,8 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //layout_c5
         if (arrayList.get(position).getLayout_c5().equals("vc"))
         {
-            holder.tv_Layout_c5.setText("");
+            //holder.tv_Layout_c5.setText("");
+            holder.tv_Layout_c5.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c5.setText(arrayList.get(position).getLayout_c5());
@@ -171,23 +176,20 @@ public class orsTripLayoutAdapter extends RecyclerView.Adapter<orsTripLayoutAdap
         //layout_c6
         if (arrayList.get(position).getLayout_c6().equals("vc"))
         {
-            holder.tv_Layout_c6.setText("");
+            //holder.tv_Layout_c6.setText("");
+            holder.tv_Layout_c6.setVisibility(View.INVISIBLE);
         }else
         {
             holder.tv_Layout_c6.setText(arrayList.get(position).getLayout_c6());
         }
-
         //holder.tv_Layout_c1.setText(arrayList.get(position).getLayout_c1());
         //holder.tv_Layout_c2.setText(arrayList.get(position).getLayout_c2());
         //holder.tv_Layout_c3.setText(arrayList.get(position).getLayout_c3());
         //holder.tv_Layout_c4.setText(arrayList.get(position).getLayout_c4());
         //holder.tv_Layout_c5.setText(arrayList.get(position).getLayout_c5());
         //holder.tv_Layout_c6.setText(arrayList.get(position).getLayout_c6());
-
         //holder.tv_Layout_c1.setOnTouchListener();
-
     }
-
     @Override
     public int getItemCount() {
         return arrayList.size();

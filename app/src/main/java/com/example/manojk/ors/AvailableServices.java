@@ -76,17 +76,17 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        //TextView tvItemID = (TextView) view.findViewById(R.id.tripID);
+                        /*
+                        TextView tvItemID = (TextView) view.findViewById(R.id.tripID);
 
-                        //if (view.getId()==tvItemID.getId())
+                        if (view.getId()==tvItemID.getId())
                         {
                             Toast.makeText(AvailableServices.this, view.getId()+ " onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
                         }
-
-                        //Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
+                        */
                         String TripID = ((TextView) view.findViewById(R.id.tripID)).getText().toString();
-                        String BusType = "Ordinary";
+                        String BusType = arList.get(position).getBusType();
 
                         orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(TripID, BusType);
                         Intent intent = new Intent(AvailableServices.this, TripLayout.class);
@@ -96,10 +96,9 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
-                        Toast.makeText(AvailableServices.this, "onItem Long Click " + view.getId(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AvailableServices.this, "onItem Long Click " + view.getId(), Toast.LENGTH_SHORT).show();
                     }
                 }));
-
     }
 
     @Override
@@ -122,6 +121,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
         //Log.d("myApp", "ors_availableServices TASK -response  " + orsAS);
         adapter = new orsAvailableServicesAdapter(orsAS);
         recyclerView.setAdapter(adapter);
+        arList = orsAS;
     }
     @Override
     public void notifySuccess(JSONObject response){}
