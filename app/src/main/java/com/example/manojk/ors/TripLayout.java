@@ -28,6 +28,11 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
     RecyclerView.LayoutManager layoutManager;
     ArrayList<orsTripLayout> arList = new ArrayList<>();
     int seats_selected = 0;
+    ArrayList<String> selected_seatNo = new ArrayList<>(4);
+
+    int basic_fare_amount=0;
+    int reservarion_charges=0;
+    int total_fare=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +64,6 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
         RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
         rl_footer.setVisibility(View.INVISIBLE);
-
-
-        // custom toolbar settings
-        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(my_toolbar);
-        getSupportActionBar().setTitle(R.string.my_trip_layout_title);
-        getSupportActionBar().setSubtitle(R.string.my_subtitle);
-        getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,6 +94,16 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
         recyclerView.setAdapter(adapter);
         adapter.setItemClickCallback(this);
         arList = orsTL;
+
+        //String myTrip_layout_title = R.string.my_trip_layout_title.toString();
+        //+ " - " + arList.get(0).getTripID()
+
+        // custom toolbar settings
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+        getSupportActionBar().setTitle("Trip Layout - " + arList.get(0).getTripID());
+        getSupportActionBar().setSubtitle(R.string.my_subtitle);
+        getSupportActionBar().setIcon(R.mipmap.ic_toolbar);
     }
 
     @Override
@@ -113,11 +119,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c1_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c1());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c1_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c1());
             }
         }
         this.display_footer(seats_selected);
@@ -135,11 +143,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c2_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c2());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c2_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c2());
             }
         }
         this.display_footer(seats_selected);
@@ -157,11 +167,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c3_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c3());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c3_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c3());
             }
         }
         this.display_footer(seats_selected);
@@ -179,11 +191,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c4_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c4());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c4_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c4());
             }
         }
         this.display_footer(seats_selected);
@@ -201,11 +215,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c5_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c5());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c5_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c5());
             }
         }
         this.display_footer(seats_selected);
@@ -223,11 +239,13 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c6_Selected(false);
                 seats_selected--;
+                selected_seatNo.remove(arList.get(p).getLayout_c6());
             }else
             {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c6_Selected(true);
                 seats_selected++;
+                selected_seatNo.add(arList.get(p).getLayout_c6());
             }
         }
         this.display_footer(seats_selected);
@@ -240,7 +258,8 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
             RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
             rl_footer.setVisibility(View.VISIBLE);
             TextView tv_seats_Selected =(TextView) findViewById(R.id.seats_selected);
-            tv_seats_Selected.setText("Total Seats: " + seats_selected );
+            String selected_seatNos = selected_seatNo.toString();
+            tv_seats_Selected.setText("Total Seats: " + seats_selected  + " No. " + selected_seatNos);
         }else
         {
             RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
