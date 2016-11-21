@@ -29,6 +29,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<orsAvailableServices> arList = new ArrayList<>();
+    ArrayList<orsAvailableServices> asList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
                         orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(TripID, BusType);
                         Intent intent = new Intent(AvailableServices.this, TripLayout.class);
                         intent.putExtra("orsTripLayoutSearch", orsTLS);
+                        //intent.putExtra("orsTripLayoutSearch", arList.get(position));
                         startActivity(intent);
                     }
 
