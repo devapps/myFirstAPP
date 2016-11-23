@@ -1,10 +1,13 @@
 package com.example.manojk.ors.Models;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by manojK on 07/11/2016.
  */
-public class orsAvailableServices {
+public class orsAvailableServices implements Parcelable {
     int trip_srno, ID, onlineSeats, rKMS, rFare, DepotID, ReservationCharges, rTripID, TripID, totalSeats, availableSeats,closeTime;
     String busType, tripCode, Leaving, Departing, Via, rDesc, boarding, plateform, dropping, TripRoute,depotShortName;
     Date jTime1;
@@ -35,6 +38,45 @@ public class orsAvailableServices {
         this.depotShortName = depotShortName;
         this.setjTime1(jTime1);
     }
+
+    protected orsAvailableServices(Parcel in) {
+        trip_srno = in.readInt();
+        ID = in.readInt();
+        onlineSeats = in.readInt();
+        rKMS = in.readInt();
+        rFare = in.readInt();
+        DepotID = in.readInt();
+        ReservationCharges = in.readInt();
+        rTripID = in.readInt();
+        TripID = in.readInt();
+        totalSeats = in.readInt();
+        availableSeats = in.readInt();
+        closeTime = in.readInt();
+        busType = in.readString();
+        tripCode = in.readString();
+        Leaving = in.readString();
+        Departing = in.readString();
+        Via = in.readString();
+        rDesc = in.readString();
+        boarding = in.readString();
+        plateform = in.readString();
+        dropping = in.readString();
+        TripRoute = in.readString();
+        depotShortName = in.readString();
+        //jTime1 = in.readString();
+    }
+
+    public static final Creator<orsAvailableServices> CREATOR = new Creator<orsAvailableServices>() {
+        @Override
+        public orsAvailableServices createFromParcel(Parcel in) {
+            return new orsAvailableServices(in);
+        }
+
+        @Override
+        public orsAvailableServices[] newArray(int size) {
+            return new orsAvailableServices[size];
+        }
+    };
 
     public int getTrip_srno() {
         return trip_srno;
@@ -226,5 +268,38 @@ public class orsAvailableServices {
 
     public void setjTime1(Date jTime1) {
         this.jTime1 = jTime1;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(trip_srno);
+        dest.writeInt(ID);
+        dest.writeInt(onlineSeats);
+        dest.writeInt(rKMS);
+        dest.writeInt(rFare);
+        dest.writeInt(DepotID);
+        dest.writeInt(ReservationCharges);
+        dest.writeInt(rTripID);
+        dest.writeInt(TripID);
+        dest.writeInt(totalSeats);
+        dest.writeInt(availableSeats);
+        dest.writeInt(closeTime);
+        dest.writeString(busType);
+        dest.writeString(tripCode);
+        dest.writeString(Leaving);
+        dest.writeString(Departing);
+        dest.writeString(Via);
+        dest.writeString(rDesc);
+        dest.writeString(boarding);
+        dest.writeString(plateform);
+        dest.writeString(dropping);
+        dest.writeString(TripRoute);
+        dest.writeString(depotShortName);
+        dest.writeString(jTime1.toString());
     }
 }

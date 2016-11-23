@@ -46,4 +46,5 @@
     <string name="menu_TL_seats_Blocked">Seats selected/blocked</string>
     <string name="menu_TL_seats_Counter">Available only for counter booking</string>
     <string name="my_trip_layout_title">Trip Layout</string>
+    <string name="title_activity_passenger_info">PassengerInfo</string>
 </resources>

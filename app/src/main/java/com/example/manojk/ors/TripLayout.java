@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,18 +31,20 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
     ArrayList<orsTripLayout> arList = new ArrayList<>();
     int seats_selected = 0;
     ArrayList<String> selected_seatNo = new ArrayList<>(4);
+    orsAvailableServices orsAS;
 
-    int basic_fare_amount=0;
-    int reservarion_charges=0;
-    int total_fare=0;
+    int basic_fare_amount = 0;
+    int reservarion_charges = 0;
+    int total_fare = 0;
 
+    Button bt_book_eTicket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_layout);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,38 +53,51 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
                         .setAction("Action", null).show();
             }
         });
-
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+*/
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
 
         Intent i = getIntent();
-        orsTripLayoutSearch orsTLS = i.getExtras().getParcelable("orsTripLayoutSearch");
+        orsAS = i.getExtras().getParcelable("orsAvailableServices");
+        orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(orsAS.getTripID() + "", orsAS.getBusType());
 
         orsTripLayoutTask orsTLT = new orsTripLayoutTask(TripLayout.this);
         orsTLT.getTripLayout(orsTLS);
 
         RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
         rl_footer.setVisibility(View.INVISIBLE);
+
+        bt_book_eTicket = (Button) findViewById(R.id.bt_book_eticket);
+        bt_book_eTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TripLayout.this, PassengerInfo.class);
+//                intent.putExtra("orsAvailableServicesSearch", orsASS);
+                startActivity(intent);
+            }
+        });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.trip_layout_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-/*
-@Override
-         public boolean onCreateOptionsMenu(Menu menu) {
 
-         getMenuInflater().inflate(R.menu.main, menu);
-         menu.getItem(0).getSubMenu().getItem(3).setVisible(false);
-         menu.getItem(0).getSubMenu().getItem(4).setVisible(true);
-         return super.onCreateOptionsMenu(menu);
+    /*
+    @Override
+             public boolean onCreateOptionsMenu(Menu menu) {
 
-         }
-*/
+             getMenuInflater().inflate(R.menu.main, menu);
+             menu.getItem(0).getSubMenu().getItem(3).setVisible(false);
+             menu.getItem(0).getSubMenu().getItem(4).setVisible(true);
+             return super.onCreateOptionsMenu(menu);
+
+             }
+    */
     @Override
     public void notifyError(VolleyError error) {
         //Log.d("myApp", "orsTripLayout Adapter  -response  " + error.printStackTrace());
@@ -108,20 +125,18 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c1_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c1_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c1_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
         //Log.d("myAPP", "Name Click at " +p + "  " + view.getId());
-        if (arList.get(p).isLayout_c1_Online() && !arList.get(p).isLayout_c1_Reserved() ) {
+        if (arList.get(p).isLayout_c1_Online() && !arList.get(p).isLayout_c1_Reserved()) {
             if (arList.get(p).isLayout_c1_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c1_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c1());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c1_Selected(true);
                 seats_selected++;
@@ -133,19 +148,17 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c2_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c2_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c2_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (arList.get(p).isLayout_c2_Online() && !arList.get(p).isLayout_c2_Reserved() ) {
+        if (arList.get(p).isLayout_c2_Online() && !arList.get(p).isLayout_c2_Reserved()) {
             if (arList.get(p).isLayout_c2_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c2_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c2());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c2_Selected(true);
                 seats_selected++;
@@ -157,19 +170,17 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c3_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c3_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c3_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (arList.get(p).isLayout_c3_Online() && !arList.get(p).isLayout_c3_Reserved() ) {
+        if (arList.get(p).isLayout_c3_Online() && !arList.get(p).isLayout_c3_Reserved()) {
             if (arList.get(p).isLayout_c3_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c3_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c3());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c3_Selected(true);
                 seats_selected++;
@@ -181,19 +192,17 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c4_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c4_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c4_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (arList.get(p).isLayout_c4_Online() && !arList.get(p).isLayout_c4_Reserved() ) {
+        if (arList.get(p).isLayout_c4_Online() && !arList.get(p).isLayout_c4_Reserved()) {
             if (arList.get(p).isLayout_c4_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c4_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c4());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c4_Selected(true);
                 seats_selected++;
@@ -205,19 +214,17 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c5_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c5_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c5_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (arList.get(p).isLayout_c5_Online() && !arList.get(p).isLayout_c5_Reserved() ) {
+        if (arList.get(p).isLayout_c5_Online() && !arList.get(p).isLayout_c5_Reserved()) {
             if (arList.get(p).isLayout_c5_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c5_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c5());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c5_Selected(true);
                 seats_selected++;
@@ -229,19 +236,17 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     @Override
     public void onLayout_c6_Click(View view, int p) {
-        if (seats_selected>=4 && !arList.get(p).isLayout_c6_Selected())
-        {
+        if (seats_selected >= 4 && !arList.get(p).isLayout_c6_Selected()) {
             Toast.makeText(TripLayout.this, "Maximum FOUR seats can be selected.", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (arList.get(p).isLayout_c6_Online() && !arList.get(p).isLayout_c6_Reserved() ) {
+        if (arList.get(p).isLayout_c6_Online() && !arList.get(p).isLayout_c6_Reserved()) {
             if (arList.get(p).isLayout_c6_Selected()) {
                 view.setBackgroundResource(R.drawable.bs_avl);
                 arList.get(p).setLayout_c6_Selected(false);
                 seats_selected--;
                 selected_seatNo.remove(arList.get(p).getLayout_c6());
-            }else
-            {
+            } else {
                 view.setBackgroundResource(R.drawable.bs_sel);
                 arList.get(p).setLayout_c6_Selected(true);
                 seats_selected++;
@@ -251,17 +256,27 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
         this.display_footer(seats_selected);
     }
 
-    private void display_footer(int seats_Selected)
-    {
-        if(seats_selected>0)
-        {
+    private void display_footer(int seats_Selected) {
+        if (seats_selected > 0) {
             RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
             rl_footer.setVisibility(View.VISIBLE);
-            TextView tv_seats_Selected =(TextView) findViewById(R.id.seats_selected);
+            TextView tv_seats_Selected = (TextView) findViewById(R.id.seats_selected);
             String selected_seatNos = selected_seatNo.toString();
-            tv_seats_Selected.setText("Total Seats: " + seats_selected  + " No. " + selected_seatNos);
-        }else
-        {
+            tv_seats_Selected.setText("Total Seats: " + seats_selected + " No. " + selected_seatNos);
+
+            TextView tv_fareAmount = (TextView) findViewById(R.id.fareAmount);
+            int fareAmount = orsAS.getrFare() * seats_Selected;
+            int rAmount = orsAS.getReservationCharges() * seats_Selected;
+            int tAmount = fareAmount + rAmount;
+            int rFare = orsAS.getrFare();
+            int rAmt = orsAS.getReservationCharges();
+            String fAmount =""+
+                    "Fare Amount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rs. <font size='4'>" + fareAmount + "</font><br/>"+
+                    "Reservation charges &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rs. <font size='4'>" + rAmount + "</font><br/>"+
+                    "Total Amount to be paid Rs. <font size='4'>" + tAmount + "</font><br/>";
+            fAmount += "<font size='1' color='red'>(Basic Fare Rs." + rFare + " & Reservation charges Rs." + rAmt + " per seat)</font>";
+            tv_fareAmount.setText(Html.fromHtml(fAmount));
+        } else {
             RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
             rl_footer.setVisibility(View.INVISIBLE);
         }

@@ -19,6 +19,7 @@
             android:theme="@style/HiddenTitleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,6 +37,10 @@
         <activity
             android:name=".TripLayout"
             android:label="@string/title_activity_trip_layout"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PassengerInfo"
+            android:label="@string/title_activity_passenger_info"
             android:theme="@style/AppTheme"></activity>
     </application>
 

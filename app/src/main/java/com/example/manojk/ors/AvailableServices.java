@@ -86,13 +86,14 @@ public class AvailableServices extends AppCompatActivity implements myIResult {
                         }
                         Toast.makeText(AvailableServices.this, "onItem Click "+position + " tripID" + ((TextView) view.findViewById(R.id.tripID)).getText(), Toast.LENGTH_SHORT).show();
                         */
-                        String TripID = ((TextView) view.findViewById(R.id.tripID)).getText().toString();
-                        String BusType = arList.get(position).getBusType();
 
-                        orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(TripID, BusType);
+                        //String TripID = ((TextView) view.findViewById(R.id.tripID)).getText().toString();
+                        //String BusType = arList.get(position).getBusType();
+
+                        //orsTripLayoutSearch orsTLS = new orsTripLayoutSearch(TripID, BusType);
                         Intent intent = new Intent(AvailableServices.this, TripLayout.class);
-                        intent.putExtra("orsTripLayoutSearch", orsTLS);
-                        //intent.putExtra("orsTripLayoutSearch", arList.get(position));
+                        //intent.putExtra("orsTripLayoutSearch", orsTLS);
+                        intent.putExtra("orsAvailableServices", arList.get(position));
                         startActivity(intent);
                     }
 

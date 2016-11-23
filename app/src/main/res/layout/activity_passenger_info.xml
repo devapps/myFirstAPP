@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.manojk.ors.TripLayout">
+    android:background="@drawable/bk"
+    tools:context="com.example.manojk.ors.PassengerInfo">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,8 +22,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_trip_layout" />
-<!--
+    <include layout="@layout/content_passenger_info" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -30,7 +31,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
--->
-    <include layout="@layout/content_trip_layout_footer" />
 
 </android.support.design.widget.CoordinatorLayout>

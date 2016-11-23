@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50sp"
+    android:layout_height="80sp"
     android:layout_alignParentBottom="true"
     android:layout_gravity="bottom"
     android:background="#ffffff"
@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:gravity="start"
+        android:textAlignment="textStart"
         android:layout_marginLeft="15dp"
-        android:gravity="center"
         android:id="@+id/fareAmount"
         android:text="Sangwan"
         android:layout_below="@+id/seats_selected"
@@ -40,6 +41,8 @@
         android:background="#558800"
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="15sp"
         android:layout_alignParentRight="true"
         />
 
