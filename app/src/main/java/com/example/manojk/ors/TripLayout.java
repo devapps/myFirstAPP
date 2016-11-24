@@ -37,6 +37,7 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
     int reservarion_charges = 0;
     int total_fare = 0;
 
+    int pSeat1 = 0, pSeat2=0, pSeat3=0, pSeat4=0, rAmount=0, fareAmount=0;
     Button bt_book_eTicket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +75,18 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
         bt_book_eTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                orsAS.setPrfSeats(selected_seatNo.toString());
+                orsAS.settSeats(seats_selected);
+                orsAS.setpSeat1(pSeat1);
+                orsAS.setpSeat2(pSeat2);
+                orsAS.setpSeat3(pSeat3);
+                orsAS.setpSeat4(pSeat4);
+                orsAS.setTotalFare(fareAmount);
+                orsAS.setrCharges(rAmount);
+
                 Intent intent = new Intent(TripLayout.this, PassengerInfo.class);
-//                intent.putExtra("orsAvailableServicesSearch", orsASS);
+                intent.putExtra("orsAvailableServices", orsAS);
                 startActivity(intent);
             }
         });
@@ -258,6 +269,12 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
 
     private void display_footer(int seats_Selected) {
         if (seats_selected > 0) {
+
+            pSeat1 = Integer.parseInt(selected_seatNo.get(0));
+            if (seats_Selected>=2){pSeat2 = Integer.parseInt(selected_seatNo.get(1));}
+            if (seats_Selected>=3){pSeat3 = Integer.parseInt(selected_seatNo.get(2));}
+            if (seats_Selected>=4){pSeat4 = Integer.parseInt(selected_seatNo.get(3));}
+
             RelativeLayout rl_footer = (RelativeLayout) findViewById(R.id.rl_footer);
             rl_footer.setVisibility(View.VISIBLE);
             TextView tv_seats_Selected = (TextView) findViewById(R.id.seats_selected);
@@ -265,8 +282,8 @@ public class TripLayout extends AppCompatActivity implements orsTripLayout_iResu
             tv_seats_Selected.setText("Total Seats: " + seats_selected + " No. " + selected_seatNos);
 
             TextView tv_fareAmount = (TextView) findViewById(R.id.fareAmount);
-            int fareAmount = orsAS.getrFare() * seats_Selected;
-            int rAmount = orsAS.getReservationCharges() * seats_Selected;
+            fareAmount = orsAS.getrFare() * seats_Selected;
+            rAmount = orsAS.getReservationCharges() * seats_Selected;
             int tAmount = fareAmount + rAmount;
             int rFare = orsAS.getrFare();
             int rAmt = orsAS.getReservationCharges();

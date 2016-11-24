@@ -12,6 +12,12 @@
         app:showAsAction="always">
         <menu>
             <item
+                android:id="@+id/seats_Legend"
+                android:orderInCategory="100"
+                android:enabled="false"
+                android:title="@string/menu_TL_seats_Legend"></item>
+
+            <item
                 android:id="@+id/seats_available"
                 android:icon="@drawable/bs_avl"
                 android:orderInCategory="100"
