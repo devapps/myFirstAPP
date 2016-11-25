@@ -45,14 +45,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="100sp"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_age1"
                 android:layout_below="@+id/til_p_name1">
                 <AutoCompleteTextView
                     android:id="@+id/p_age1"
-                    android:layout_width="100sp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Age (in Yrs)"
                     android:inputType="textPhonetic"
@@ -73,14 +73,12 @@
                 <RadioButton android:id="@+id/male_pGender1"
                     android:text="Male"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:layout_height="wrap_content" />
                 <RadioButton android:id="@+id/female_pGender1"
                     android:text="Female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:layout_marginLeft="20sp"/>
             </RadioGroup>
             </RelativeLayout>
 <!-- Passenger info SEAT 2 -->
@@ -89,8 +87,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/passenger2"
                 android:background="#fff"
-                android:layout_marginTop="5sp"
-                >
+                android:layout_marginTop="5sp">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +105,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="100sp"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_age2"
@@ -131,20 +128,16 @@
                     android:layout_below="@+id/til_p_name2"
                     android:layout_toRightOf="@+id/til_p_age2"
                     android:layout_marginTop="17sp"
-                    android:layout_marginLeft="25sp"
-                    >
+                    android:layout_marginLeft="25sp">
                     <RadioButton android:id="@+id/male_pGender2"
                         android:text="Male"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        />
+                        android:layout_height="wrap_content"/>
                     <RadioButton android:id="@+id/female_pGender2"
                         android:text="Female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20sp"
-                        android:onClick="onRadioButtonClicked"/>
+                        android:layout_marginLeft="20sp"/>
                 </RadioGroup>
             </RelativeLayout>
 <!-- Passenger info SEAT 3 -->
@@ -153,14 +146,12 @@
                 android:layout_height="match_parent"
                 android:id="@+id/passenger3"
                 android:background="#fff"
-                android:layout_marginTop="5sp"
-                >
+                android:layout_marginTop="5sp">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_name3">
-
                 <AutoCompleteTextView
                     android:id="@+id/p_name3"
                     android:layout_width="match_parent"
@@ -172,12 +163,11 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="100sp"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_age3"
                 android:layout_below="@+id/til_p_name3">
-
                 <AutoCompleteTextView
                     android:id="@+id/p_age3"
                     android:layout_width="match_parent"
@@ -195,20 +185,16 @@
                     android:layout_below="@+id/til_p_name3"
                     android:layout_toRightOf="@+id/til_p_age3"
                     android:layout_marginTop="17sp"
-                    android:layout_marginLeft="25sp"
-                    >
+                    android:layout_marginLeft="25sp">
                     <RadioButton android:id="@+id/male_pGender3"
                         android:text="Male"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        />
+                        android:layout_height="wrap_content"/>
                     <RadioButton android:id="@+id/female_pGender3"
                         android:text="Female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20sp"
-                        android:onClick="onRadioButtonClicked"/>
+                        android:layout_marginLeft="20sp"/>
                 </RadioGroup>
             </RelativeLayout>
 <!-- Passenger info SEAT 4 -->
@@ -217,14 +203,12 @@
                 android:layout_height="match_parent"
                 android:id="@+id/passenger4"
                 android:background="#fff"
-                android:layout_marginTop="5sp"
-                >
+                android:layout_marginTop="5sp">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_name4">
-
                 <AutoCompleteTextView
                     android:id="@+id/p_name4"
                     android:layout_width="match_parent"
@@ -236,12 +220,11 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="100sp"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:textColorHint="#000"
                 android:id="@+id/til_p_age4"
                 android:layout_below="@+id/til_p_name4">
-
                 <AutoCompleteTextView
                     android:id="@+id/p_age4"
                     android:layout_width="match_parent"
@@ -259,23 +242,18 @@
                     android:layout_below="@+id/til_p_name4"
                     android:layout_toRightOf="@+id/til_p_age4"
                     android:layout_marginTop="17sp"
-                    android:layout_marginLeft="25sp"
-                    >
+                    android:layout_marginLeft="25sp">
                     <RadioButton android:id="@+id/male_pGender4"
                         android:text="Male"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        />
+                        android:layout_height="wrap_content"/>
                     <RadioButton android:id="@+id/female_pGender4"
                         android:text="Female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20sp"
-                        android:onClick="onRadioButtonClicked"/>
+                        android:layout_marginLeft="20sp"/>
                 </RadioGroup>
             </RelativeLayout>
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

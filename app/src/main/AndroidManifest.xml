@@ -41,6 +41,10 @@
         <activity
             android:name=".PassengerInfo"
             android:label="@string/title_activity_passenger_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CustomerDetails"
+            android:label="@string/title_activity_customer_details"
             android:theme="@style/AppTheme"></activity>
     </application>
 
