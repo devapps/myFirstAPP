@@ -45,6 +45,10 @@
         <activity
             android:name=".CustomerDetails"
             android:label="@string/title_activity_customer_details"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TestPayment"
+            android:label="@string/title_activity_test_payment"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -51,4 +51,7 @@
     <string name="prompt_p_age1">Age (in Yrs)</string>
     <string name="menu_TL_seats_Legend">Seats Legend</string>
     <string name="title_activity_customer_details">CustomerDetails</string>
+    <string name="Rs">\u20B9</string>
+    <string name="rs">\u20A8</string>
+    <string name="title_activity_test_payment">TestPayment</string>
 </resources>
